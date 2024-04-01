@@ -44,22 +44,75 @@ This will generate output showing the count of memory and non-memory instruction
 
 To build the LLVM pass, ensure you have LLVM installed and configured properly. Then compile the `memory-instruction-counter.cpp` file into a shared library using `clang++`, linking against LLVM libraries and headers using `llvm-config`.
 
-## Example
+Certainly! Here's how you can add the description to your README file:
 
-Here's an example of the output produced by the `MemoryInstructionCounter` pass:
+---
+
+## Example Output
+
+### Input: GCD Calculation Program
+
+```cpp
+#include <iostream>
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int main() {
+    int num1 = 48;
+    int num2 = 18;
+    std::cout << "GCD of " << num1 << " and " << num2 << " is: " << gcd(num1, num2) << std::endl;
+    return 0;
+}
+```
+
+### Output:
 
 ```
-Function foo:
+Function __cxx_global_var_init:
 Basic Block ID: 1
-Memory Instructions: 3
-Non-Memory Instructions: 2
+Memory Instructions: 2
+Non-Memory Instructions: 1
 
+Function _Z3gcdii:
 Basic Block ID: 2
+Memory Instructions: 2
+Non-Memory Instructions: 4
+Basic Block ID: 3
+Memory Instructions: 1
+Non-Memory Instructions: 2
+Basic Block ID: 4
+Memory Instructions: 7
+Non-Memory Instructions: 2
+Basic Block ID: 5
+Memory Instructions: 1
+Non-Memory Instructions: 1
+
+Function main:
+Basic Block ID: 6
+Memory Instructions: 15
+Non-Memory Instructions: 4
+
+Function _GLOBAL__sub_I_input.cpp:
+Basic Block ID: 7
 Memory Instructions: 1
 Non-Memory Instructions: 1
 ```
 
-This output indicates that in the function `foo`, there are two basic blocks. The first basic block contains 3 memory instructions and 2 non-memory instructions, while the second basic block contains 1 memory instruction and 1 non-memory instruction.
+The output above illustrates the analysis performed by the `Memory Instruction Counter` pass on the GCD calculation program. It shows the count of memory and non-memory instructions within each function and basic block of the program. 
+
+For instance:
+- The `gcd()` function contains multiple basic blocks, each with a count of memory and non-memory instructions.
+- The `main()` function, responsible for invoking the `gcd()` function and printing the result, also has its memory and non-memory instruction counts displayed.
+
+This output provides valuable insights into the memory usage and instruction composition of the GCD calculation program, aiding in understanding its internal workings and potential areas for optimization.
+
 
 ## License
 
