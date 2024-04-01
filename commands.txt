@@ -1,0 +1,5 @@
+clang++ -shared -o memory-instruction-counter.so memory-instruction-counter.cpp `llvm-config --cxxflags --ldflags --libs` -fPIC
+
+clang++ -S -emit-llvm input.cpp -o input.ll
+
+opt -load ./memory-instruction-counter.so -memory-instruction-counter < input.ll > /dev/null -enable-new-pm=0
