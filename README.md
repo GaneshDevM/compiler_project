@@ -44,8 +44,15 @@ This will generate output showing the count of memory and non-memory instruction
 
 To build the LLVM pass, ensure you have LLVM installed and configured properly. Then compile the `memory-instruction-counter.cpp` file into a shared library using `clang++`, linking against LLVM libraries and headers using `llvm-config`.
 
+### Installing LLVM and Clang
 
----
+If you haven't installed LLVM and Clang yet, you can do so on Debian-based systems (like Ubuntu) using `apt-get`. Here's how:
+
+```bash
+$ sudo apt-get update
+$ sudo apt-get install clang
+$ sudo apt-get install llvm
+```
 
 ## Example Output
 
